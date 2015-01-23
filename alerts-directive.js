@@ -5,9 +5,11 @@
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
+define(['module', 'angular'], function(module, angular) {
 
 'use strict';
+
+var modulePath = module.uri.substr(0, module.uri.lastIndexOf('/')) + '/';
 
 /* @ngInject */
 function factory(brAlertService, $compile, $rootScope) {
@@ -18,7 +20,7 @@ function factory(brAlertService, $compile, $rootScope) {
       filterOrigin: '@?brFilterOrigin',
       fixed: '@?brFixed'
     },
-    templateUrl: '/app/components/alert/alerts.html',
+    templateUrl: modulePath + 'alerts.html',
     link: Link
   };
 
