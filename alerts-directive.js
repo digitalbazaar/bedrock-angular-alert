@@ -5,7 +5,7 @@
  *
  * @author Dave Longley
  */
-define(['module', 'angular'], function(module, angular) {
+define(['angular', 'module'], function(angular, module) {
 
 'use strict';
 
