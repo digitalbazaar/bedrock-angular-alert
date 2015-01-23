@@ -1,6 +1,6 @@
 {
   "name": "bedrock-angular-alert",
-  "main": "./app.js",
+  "main": "./alert.js",
   "ignore": [],
   "dependencies": {
   }
