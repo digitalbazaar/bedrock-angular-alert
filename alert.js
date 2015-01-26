@@ -18,7 +18,7 @@ define([
 
 'use strict';
 
-var module = angular.module('app.alert', []);
+var module = angular.module('bedrock.alert', []);
 
 module.directive(addAlertDirective);
 module.service(alertService);
