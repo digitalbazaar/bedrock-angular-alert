@@ -1,0 +1,68 @@
+/*
+ * Bedrock alert style
+ *
+ * Copyright (c) 2012-2015 Digital Bazaar, Inc. All rights reserved.
+ */
+@import "../bedrock-angular/less/app.less";
+
+/* Alert area */
+.br-alert-area-fixed {
+  position: fixed;
+  top: -1000px;
+  margin: 0 10px;
+  /* 20px for margins, 15px for scrollbar */
+  width: calc(100% - 20px - 15px);
+  z-index: 1100;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #999;
+  border-color: rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  outline: none;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow: visible;
+  transition: top 350ms cubic-bezier(0.17, 0.04, 0.03, 0.94),
+    top 500ms cubic-bezier(0.94, 0.03, 0.04, 0.17);
+}
+.br-alert-area-fixed-show {
+  top: 0px;
+}
+.br-alert-area-fixed-show .alert {
+  margin-bottom: 10px;
+}
+.br-alert-area-body-fixed {
+  padding: 15px 15px 5px 15px;
+}
+
+/* Alert area responsiveness */
+@media (min-width: 768px) {
+  .br-alert-area-fixed {
+    left: 50%;
+    width: 600px;
+    margin-left: -307px;
+    margin-right: 0;
+  }
+  .modal-sm .br-alert-area-fixed {
+    left: 50%;
+    width: 300px;
+    margin-left: -157px;
+    margin-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg .br-alert-area-fixed {
+    left: 50%;
+    width: 900px;
+    margin-left: -457px;
+    margin-right: 0;
+  }
+}
