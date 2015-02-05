@@ -5,11 +5,9 @@
  *
  * @author Dave Longley
  */
-define(['angular', 'module'], function(angular, module) {
+define(['angular'], function(angular) {
 
 'use strict';
-
-var modulePath = module.uri.substr(0, module.uri.lastIndexOf('/')) + '/';
 
 /* @ngInject */
 function factory(brAlertService, $compile, $rootScope) {
@@ -20,7 +18,7 @@ function factory(brAlertService, $compile, $rootScope) {
       filterOrigin: '@?brFilterOrigin',
       fixed: '@?brFixed'
     },
-    templateUrl: modulePath + 'alerts.html',
+    templateUrl: requirejs.toUrl('bedrock-angular-alert/alerts.html'),
     link: Link
   };
 
