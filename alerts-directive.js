@@ -88,7 +88,7 @@ function factory(brAlertService, $compile, $rootScope) {
       }
 
       // form error
-      if(value.type === 'bedrock.validation.ValidationError') {
+      if(value.type === 'ValidationError') {
         // select forms in open dialogs first, then any non-dialog visible
         // forms, then self
         var target;
