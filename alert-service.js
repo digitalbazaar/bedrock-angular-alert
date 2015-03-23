@@ -157,7 +157,7 @@ function factory($rootScope, brModelService) {
    * Clears all alerts of a given type or all alerts of a given type in a
    * particular category.
    *
-   * @param [type] the alert type, null for all..
+   * @param [type] the alert type, null for all.
    * @param [category] the category to clear, omit for all.
    *
    * @return the service for chaining.
