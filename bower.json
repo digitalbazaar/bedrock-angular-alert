@@ -5,6 +5,7 @@
   "moduleType": ["amd"],
   "ignore": [],
   "dependencies": {
-    "bedrock-angular": "~0.1.0"
+    "bedrock-angular": "~0.1.0",
+    "bedrock-angular-model": "~0.1.0"
   }
 }
