@@ -11,7 +11,7 @@ for displaying those alerts.
 <div br-alerts br-fixed="true"></div>
 
 <!-- custom directive that uses brAlertService -->
-<my-directive><button ng-click="errorOccurred">Error</button></my-directive>
+<my-directive/>
 ```
 
 ```js
@@ -22,8 +22,9 @@ function factory(brAlertService) {
   return {
     restrict: 'E',
     scope: {},
+    template: '<button ng-click="errorOccurred()">Error</button>',
     link: function(scope, element) {
-      brAlertService.add('info', 'my-directive loaded.');
+      brAlertService.add('info', 'myDirective loaded.');
 
       scope.errorOccurred = function(err) {
         // add a feedback error; if the scope is destroyed, remove the error
