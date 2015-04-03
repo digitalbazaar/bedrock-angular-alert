@@ -15,7 +15,7 @@ for displaying those alerts.
 ```
 
 ```js
-angular.module('example', ['bedrock.alert']).directive('my-directive', factory);
+angular.module('example', ['bedrock.alert']).directive('myDirective', factory);
 
 /* @ngInject */
 function factory(brAlertService) {
