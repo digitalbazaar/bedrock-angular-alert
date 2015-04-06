@@ -106,7 +106,6 @@ particular category.
 
 Clears all feedback alerts or feedback alerts of a particular type.
 
-
 [bedrock]: https://github.com/digitalbazaar/bedrock
 [bedrock-angular]: https://github.com/digitalbazaar/bedrock-angular
 [AngularJS]: https://github.com/angular/angular.js
