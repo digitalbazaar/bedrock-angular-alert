@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- Allow br-alerts as element.
+
 ## [2.0.0] - 2016-04-09
 
 ### Changed
