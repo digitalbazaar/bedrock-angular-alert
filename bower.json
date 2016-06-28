@@ -1,8 +1,13 @@
 {
   "name": "bedrock-angular-alert",
-  "version": "2.0.1-dev",
-  "main": ["./alert.js", "./alert.less"],
-  "moduleType": ["amd"],
+  "version": "2.1.0",
+  "main": [
+    "./alert.js",
+    "./alert.less"
+  ],
+  "moduleType": [
+    "amd"
+  ],
   "ignore": [],
   "dependencies": {
     "bedrock-angular": "^2.0.0",
