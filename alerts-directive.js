@@ -12,7 +12,7 @@ define(['angular'], function(angular) {
 /* @ngInject */
 function factory(brAlertService, $compile, $rootScope) {
   return {
-    restrict: 'A',
+    restrict: 'EA',
     scope: {
       alertCategory: '@?brAlertCategory',
       filterOrigin: '@?brFilterOrigin',
