@@ -2,16 +2,12 @@
  * Add Alert directive. Allows for adding an html-based alert to the
  * brAlertService via transclusion.
  *
- * Copyright (c) 2014 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define([], function() {
-
-'use strict';
-
 /* @ngInject */
-function factory(brAlertService) {
+export default function factory(brAlertService) {
   return {
     restrict: 'EA',
     compile: function(tElement) {
@@ -27,7 +23,3 @@ function factory(brAlertService) {
     }
   };
 }
-
-return {brAddAlert: factory};
-
-});

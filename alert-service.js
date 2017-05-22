@@ -1,16 +1,14 @@
 /*!
  * Alert Service.
  *
- * Copyright (c) 2014 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
-
-'use strict';
+import angular from 'angular';
 
 /* @ngInject */
-function factory($rootScope, brModelService) {
+export default function factory($rootScope, brModelService) {
   var service = {};
 
   // defined categories
@@ -211,11 +209,10 @@ function factory($rootScope, brModelService) {
   };
 
   // expose service to scope
+  // FIXME: remove this from the $rootScope
+  $rootScope.app = $rootScope.app || {};
+  $rootScope.app.services = $rootScope.app.services || {};
   $rootScope.app.services.alert = service;
 
   return service;
 }
-
-return {brAlertService: factory};
-
-});

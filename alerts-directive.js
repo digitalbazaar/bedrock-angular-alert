@@ -1,16 +1,14 @@
 /*!
  * Alerts directive.
  *
- * Copyright (c) 2014-2015 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2014-2017 Digital Bazaar, Inc. All rights reserved.
  *
  * @author Dave Longley
  */
-define(['angular'], function(angular) {
-
-'use strict';
+import angular from 'angular';
 
 /* @ngInject */
-function factory(brAlertService, $compile, $rootScope) {
+export default function factory(brAlertService, $compile, $rootScope) {
   return {
     restrict: 'EA',
     scope: {
@@ -18,7 +16,7 @@ function factory(brAlertService, $compile, $rootScope) {
       filterOrigin: '@?brFilterOrigin',
       fixed: '@?brFixed'
     },
-    templateUrl: requirejs.toUrl('bedrock-angular-alert/alerts.html'),
+    templateUrl: 'bedrock-angular-alert/alerts.html',
     link: Link
   };
 
@@ -155,7 +153,3 @@ function factory(brAlertService, $compile, $rootScope) {
     }
   }
 }
-
-return {brAlerts: factory};
-
-});
