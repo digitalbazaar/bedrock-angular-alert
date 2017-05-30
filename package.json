@@ -6,7 +6,11 @@
   "less": "alert.less",
   "dependencies": {
     "angular": "~1.6.4",
-    "bedrock-angular-model": "^3.0.0"
+    "bedrock-angular-model": "^3.0.0",
+    "bootstrap": "~3.3.4"
+  },
+  "bedrock": {
+    "browserDependencies": "all"
   },
   "repository": {
     "type": "git",
