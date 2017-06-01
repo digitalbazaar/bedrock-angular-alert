@@ -90,14 +90,21 @@ export default function factory(brAlertService, $compile, $rootScope) {
         // select forms in open dialogs first, then any non-dialog visible
         // forms, then self
         var target;
-        var dialog = angular.element('dialog[open]');
+        // TODO: should this be checking for deepest dialog, not just one
+        // that is open?
+        var dialog = angular.element(document.querySelector('dialog[open]'));
         if(dialog.length) {
           target = dialog.find('form');
           if(!target.length) {
             target = dialog;
           }
         } else {
-          target = angular.element(':not(dialog) form:visible');
+          target = angular.element(Array.prototype.filter.call(
+            document.querySelectorAll(':not(dialog) form'),
+            // filter out forms that aren't visible
+            function() {
+              return this.offsetWidth > 0 || this.offsetHeight > 0;
+            }));
         }
         if(!target.length) {
           target = element;
