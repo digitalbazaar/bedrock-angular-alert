@@ -9,7 +9,7 @@ import angular from 'angular';
 
 /* @ngInject */
 export default function factory($rootScope, brModelService) {
-  var service = {};
+  const service = {};
 
   // defined categories
   service.category = {
@@ -19,21 +19,17 @@ export default function factory($rootScope, brModelService) {
 
   // categorized log of alerts
   service.log = {};
-  angular.forEach(service.category, function(c) {
-    service.log[c] = [];
-  });
+  angular.forEach(service.category, c => service.log[c] = []);
 
   // the total number of alerts
   service.total = 0;
 
   // valid event types
-  var eventTypes = ['add', 'remove', 'clear'];
+  const eventTypes = ['add', 'remove', 'clear'];
 
   // alert listeners
   service.listeners = {};
-  eventTypes.forEach(function(event) {
-    service.listeners[event] = [];
-  });
+  eventTypes.forEach(event => service.listeners[event] = []);
 
   /**
    * Adds a listener.
@@ -43,7 +39,7 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.on = function(event, listener) {
+  service.on = (event, listener) => {
     if(eventTypes.indexOf(event) === -1) {
       throw new Error('Unknown event type "' + event + '"');
     }
@@ -59,12 +55,12 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.removeListener = function(event, listener) {
+  service.removeListener = (event, listener) => {
     if(eventTypes.indexOf(event) === -1) {
       throw new Error('Unknown event type "' + event + '"');
     }
-    var listeners = service.listeners[event];
-    var idx = listeners.indexOf(listener);
+    const listeners = service.listeners[event];
+    const idx = listeners.indexOf(listener);
     if(idx !== -1) {
       listeners.splice(idx, 1);
     }
@@ -77,11 +73,9 @@ export default function factory($rootScope, brModelService) {
    * @param event the event to emit.
    * @param data any data associated with the event.
    */
-  var emit = function(event, data) {
-    var listeners = service.listeners[event];
-    listeners.forEach(function(listener) {
-      listener(data);
-    });
+  const emit = (event, data) => {
+    const listeners = service.listeners[event];
+    listeners.forEach(listener => listener(data));
   };
 
   /**
@@ -97,30 +91,26 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.add = function(type, value, options) {
+  service.add = (type, value, options) => {
     if(typeof value === 'string') {
       value = {message: value};
     }
     if(type === 'error' &&
       'stack' in value &&
       typeof console !== 'undefined') {
-      var log = ('error' in console) ? console.error : console.log;
+      const log = ('error' in console) ? console.error : console.log;
       log.call(console, 'Error value:', value);
       log.call(console, 'Error stack:', value.stack);
     }
     options = options || {};
-    var category = options.category || service.category.FEEDBACK;
-    var scope = options.scope || null;
-    var info = {type: type, value: value, category: category};
+    const category = options.category || service.category.FEEDBACK;
+    const scope = options.scope || null;
+    const info = {type: type, value: value, category: category};
     // remove alert when scope is destroyed
     if(scope) {
       // provide access to scope
-      value.getScope = function() {
-        return scope;
-      };
-      scope.$on('$destroy', function() {
-        service.remove(type, value);
-      });
+      value.getScope = () => scope;
+      scope.$on('$destroy', () => service.remove(type, value));
     }
     service.log[category].push(info);
     service.total += 1;
@@ -136,10 +126,10 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.remove = function(type, value) {
-    angular.forEach(service.log, function(list) {
-      for(var i = 0; i < list.length; ++i) {
-        var info = list[i];
+  service.remove = (type, value) => {
+    angular.forEach(service.log, list => {
+      for(let i = 0; i < list.length; ++i) {
+        const info = list[i];
         if(info.type === type && info.value === value) {
           list.splice(i, 1);
           service.total -= 1;
@@ -160,7 +150,7 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.clear = function(type, category) {
+  service.clear = (type, category) => {
     if(category) {
       if(!(category in service.category)) {
         throw new Error('Invalid error category: ' + category);
@@ -172,14 +162,14 @@ export default function factory($rootScope, brModelService) {
     }
 
     // clear all categories
-    angular.forEach(service.log, function(list, category) {
+    angular.forEach(service.log, (list, category) => {
       if(!type) {
         service.total -= list.length;
         list.length = 0;
         emit('clear', category);
         return;
       }
-      brModelService.removeAllFromArray(list, function(e) {
+      brModelService.removeAllFromArray(list, e => {
         if(e.type === type) {
           service.total -= 1;
           return true;
@@ -199,7 +189,7 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
-  service.clearFeedback = function(type) {
+  service.clearFeedback = type => {
     if(type) {
       service.clear(type, service.category.FEEDBACK);
     } else {

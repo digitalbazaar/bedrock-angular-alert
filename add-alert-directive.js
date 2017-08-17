@@ -10,11 +10,11 @@
 export default function factory(brAlertService) {
   return {
     restrict: 'EA',
-    compile: function(tElement) {
-      var template = tElement.html();
-      return function(scope, element, attrs) {
+    compile: tElement => {
+      const template = tElement.html();
+      return (scope, element, attrs) => {
         element.remove();
-        attrs.$observe('brAlertType', function(alertType) {
+        attrs.$observe('brAlertType', alertType => {
           if(alertType) {
             brAlertService.add(alertType, {html: template}, {scope: scope});
           }

@@ -7,11 +7,13 @@
  */
 import angular from 'angular';
 import AddAlertDirective from './add-alert-directive.js';
+import AlertComponent from './alert-component.js';
 import AlertService from './alert-service.js';
 import AlertsDirective from './alerts-directive.js';
 
-var module = angular.module('bedrock.alert', ['bedrock.model']);
+const module = angular.module('bedrock.alert', ['bedrock.model', 'ngMaterial']);
 
+module.component('brAlert', AlertComponent);
 module.directive('brAddAlert', AddAlertDirective);
 module.service('brAlertService', AlertService);
 module.directive('brAlerts', AlertsDirective);

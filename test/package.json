@@ -1,0 +1,31 @@
+{
+  "name": "bedrock-angular-alert-test",
+  "version": "0.0.1-0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node --preserve-symlinks test.js",
+    "test": "node --preserve-symlinks test.js test --framework protractor",
+    "postinstall": "node --preserve-symlinks test compile-less"
+  },
+  "dependencies": {
+    "bedrock": "^1.7.0",
+    "bedrock-angular": "^3.0.0",
+    "bedrock-angular-alert": "..",
+    "bedrock-angular-material": "^1.0.0",
+    "bedrock-docs": "^2.1.1",
+    "bedrock-express": "^2.0.6",
+    "bedrock-server": "^2.3.0",
+    "bedrock-test": "digitalbazaar/bedrock-test#2.x",
+    "bedrock-validation": "^2.2.1",
+    "bedrock-views": "^5.2.1",
+    "bedrock-webpack": "^1.1.1"
+  },
+  "bedrock": {
+    "browserDependencies": [
+      "bedrock-angular",
+      "bedrock-angular-alert",
+      "bedrock-angular-material"
+    ]
+  }
+}

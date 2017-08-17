@@ -24,36 +24,34 @@ export default function factory(brAlertService, $compile, $rootScope) {
     scope.app = $rootScope.app;
     attrs.brAlertCategory = attrs.brAlertCategory || 'all';
 
-    var elements = {};
-    for(var key in brAlertService.category) {
-      var category = brAlertService.category[key];
+    const elements = {};
+    for(const key in brAlertService.category) {
+      const category = brAlertService.category[key];
       elements[category] = [];
-      var log = brAlertService.log[category];
+      const log = brAlertService.log[category];
       log.forEach(addAlert);
     }
 
-    scope.closeAlert = function(info) {
-      brAlertService.remove(info.type, info.value);
-    };
+    scope.closeAlert = info => brAlertService.remove(info.type, info.value);
 
-    scope.showCustomAlerts = function(category) {
-      var area = element.find('.br-alert-area-' + category);
-      angular.forEach(elements[category] || [], function(entry) {
+    scope.showCustomAlerts = category => {
+      const area = element[0].querySelector('.br-alert-area-' + category);
+      angular.forEach(elements[category] || [], entry => {
         if(entry.element !== null) {
           return;
         }
         // transclude
-        var info = entry.info;
-        var value = info.value;
-        var el = angular.element('<div class="alert"></div>');
+        const info = entry.info;
+        const value = info.value;
+        const el = angular.element('<div class="alert"></div>');
         el.addClass('alert-' + info.type);
         el.append('<button type="button" class="close">&times;</button>');
         el.append(value.html);
-        el.first().one('click', function() {
+        el.first().one('click', () => {
           scope.closeAlert(info);
           scope.$apply();
         });
-        var transclusionScope = value.getScope ? value.getScope() : scope;
+        const transclusionScope = value.getScope ? value.getScope() : scope;
         $compile(el)(transclusionScope);
         entry.element = el;
         area.append(entry.element);
@@ -66,7 +64,7 @@ export default function factory(brAlertService, $compile, $rootScope) {
       .on('remove', removeAlert)
       .on('clear', clearAlerts);
 
-    scope.$on('$destroy', function() {
+    scope.$on('$destroy', () => {
       brAlertService
         .removeListener('add', addAlert)
         .removeListener('remove', removeAlert)
@@ -74,7 +72,7 @@ export default function factory(brAlertService, $compile, $rootScope) {
     });
 
     function addAlert(info) {
-      var value = info.value;
+      const value = info.value;
 
       if(value.html) {
         // add entry for later population
@@ -89,10 +87,10 @@ export default function factory(brAlertService, $compile, $rootScope) {
       if(value.type === 'ValidationError') {
         // select forms in open dialogs first, then any non-dialog visible
         // forms, then self
-        var target;
+        let target;
         // TODO: should this be checking for deepest dialog, not just one
         // that is open?
-        var dialog = angular.element(document.querySelector('dialog[open]'));
+        const dialog = angular.element(document.querySelector('dialog[open]'));
         if(dialog.length) {
           target = dialog.find('form');
           if(!target.length) {
@@ -102,21 +100,20 @@ export default function factory(brAlertService, $compile, $rootScope) {
           target = angular.element(Array.prototype.filter.call(
             document.querySelectorAll(':not(dialog) form'),
             // filter out forms that aren't visible
-            function() {
-              return this.offsetWidth > 0 || this.offsetHeight > 0;
-            }));
+            () => (this.offsetWidth > 0 || this.offsetHeight > 0))
+          );
         }
         if(!target.length) {
-          target = element;
+          target = element[0];
         }
 
         // clear previous feedback, add new
-        target.find('[br-property-path]').removeClass('has-error');
-        angular.forEach(value.details.errors, function(detailError) {
-          var path = detailError.details.path;
+        target.querySelector('[br-property-path]').removeClass('has-error');
+        angular.forEach(value.details.errors, detailError => {
+          const path = detailError.details.path;
           if(path) {
             // highlight element using br-property-path
-            var el = target.find('[br-property-path="' + path + '"]');
+            const el = target.querySelector(`[br-property-path="${path}"]`);
             el.addClass('has-error');
             elements[info.category].push({
               info: info,
@@ -129,8 +126,8 @@ export default function factory(brAlertService, $compile, $rootScope) {
 
     function removeAlert(info) {
       // find info+element pairs and remove elements
-      var list = elements[info.category];
-      for(var i = 0; i < list.length;) {
+      const list = elements[info.category];
+      for(let i = 0; i < list.length;) {
         if(list[i].info === info) {
           if(list[i].element) {
             list[i].element.remove();
@@ -145,16 +142,17 @@ export default function factory(brAlertService, $compile, $rootScope) {
     }
 
     function clearAlerts(category, type) {
-      var list = elements[category].slice();
-      for(var i = 0; i < list.length; ++i) {
+      const list = elements[category].slice();
+      for(let i = 0; i < list.length; ++i) {
         if(!type || list[i].info.type === type) {
           removeAlert(list[i].info);
         }
       }
-      element.find('.br-alert-area-' + category).empty();
+      angular.element(
+        element[0].querySelector('.br-alert-area-' + category)).empty();
       if(type) {
         // not all alerts were removed, so rebuild alert area
-        var log = brAlertService.log[category];
+        const log = brAlertService.log[category];
         log.forEach(addAlert);
       }
     }

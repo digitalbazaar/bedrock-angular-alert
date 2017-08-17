@@ -11,7 +11,7 @@ for displaying those alerts.
 <div br-alerts br-fixed="true"></div>
 
 <!-- custom directive that uses brAlertService -->
-<my-directive/>
+<my-directive></my-directive>
 ```
 
 ```js
@@ -23,7 +23,7 @@ function factory(brAlertService) {
     restrict: 'E',
     scope: {},
     template: '<button ng-click="errorOccurred()">Error</button>',
-    link: function(scope, element) {
+    link: (scope, element) => {
       brAlertService.add('info', 'myDirective loaded.');
 
       scope.errorOccurred = function(err) {
@@ -38,11 +38,11 @@ function factory(brAlertService) {
 ## Setup
 
 ```
-bower install bedrock-angular-alert
+npm install bedrock-angular-alert
 ```
 
-Installation of the module followed by a restart of your [bedrock][] server
-is sufficient to make the module available to your application.
+`bedrock-angular-alert` must be added to the `bedrock.browserDependencies` list
+in the `package.json` file of the dependent package.
 
 To manually add **bedrock-angular-alert** as a dependency:
 

@@ -2,12 +2,12 @@
   "name": "bedrock-angular-alert",
   "version": "3.0.3-0",
   "description": "An AngularJS module that provides a service for managing alerts.",
-  "main": "index.js",
-  "less": "alert.less",
+  "browser": "index.js",
+  "less": "main.less",
   "dependencies": {
-    "angular": "~1.6.4",
-    "bedrock-angular-model": "^3.0.0",
-    "bootstrap": "~3.3.4"
+    "bedrock-angular": "^3.0.0",
+    "bedrock-angular-material": "^1.0.0",
+    "bedrock-angular-model": "^3.0.0"
   },
   "bedrock": {
     "browserDependencies": "all"
