@@ -17,3 +17,24 @@ module.component('brAlert', AlertComponent);
 module.directive('brAddAlert', AddAlertDirective);
 module.service('brAlertService', AlertService);
 module.directive('brAlerts', AlertsDirective);
+
+module.config(function($mdToastProvider) {
+  $mdToastProvider
+    .addPreset('brError', {
+      methods: ['text', 'parent'],
+      options: function() {
+        return {
+          template: '<md-toast>' +
+            '  <div class="md-toast-content">' +
+            '    {{ toast.text }}' +
+            '  </div>' +
+            '</md-toast>',
+          controller: function() {},
+          bindToController: true,
+          controllerAs: 'toast',
+          text: 'Default',
+          position: "top center"
+        };
+      }
+    });
+});

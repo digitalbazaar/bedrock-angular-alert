@@ -8,7 +8,8 @@
 import angular from 'angular';
 
 /* @ngInject */
-export default function factory($rootScope, brModelService) {
+export default function factory(
+  $mdToast, $rootScope, brModelService) {
   const service = {};
 
   // defined categories
@@ -91,6 +92,8 @@ export default function factory($rootScope, brModelService) {
    *
    * @return the service for chaining.
    */
+  // FIXME: options is disregarded right now, is `scope` still relevnat or
+  // does $mdToast do the right thingk?
   service.add = (type, value, options) => {
     if(typeof value === 'string') {
       value = {message: value};
@@ -102,20 +105,7 @@ export default function factory($rootScope, brModelService) {
       log.call(console, 'Error value:', value);
       log.call(console, 'Error stack:', value.stack);
     }
-    options = options || {};
-    const category = options.category || service.category.FEEDBACK;
-    const scope = options.scope || null;
-    const info = {type: type, value: value, category: category};
-    // remove alert when scope is destroyed
-    if(scope) {
-      // provide access to scope
-      value.getScope = () => scope;
-      scope.$on('$destroy', () => service.remove(type, value));
-    }
-    service.log[category].push(info);
-    service.total += 1;
-    emit('add', info);
-    return service;
+    $mdToast.show($mdToast.brError().text(value.message));
   };
 
   /**
