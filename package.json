@@ -5,7 +5,7 @@
   "browser": "index.js",
   "less": "main.less",
   "dependencies": {
-    "bedrock-angular": "^3.0.0",
+    "bedrock-angular": "^4.0.0",
     "bedrock-angular-material": "^1.0.0",
     "bedrock-angular-model": "^3.0.0"
   },
