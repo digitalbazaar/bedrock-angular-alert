@@ -92,8 +92,8 @@ export default function factory(
    *
    * @return the service for chaining.
    */
-  // FIXME: options is disregarded right now, is `scope` still relevnat or
-  // does $mdToast do the right thingk?
+  // FIXME: options is disregarded right now, is `scope` still relevant or
+  // does $mdToast do the right thing?
   service.add = (type, value, options) => {
     if(typeof value === 'string') {
       value = {message: value};
