@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "bedrock": "^1.7.0",
-    "bedrock-angular": "^3.0.0",
-    "bedrock-angular-alert": "..",
+    "bedrock-angular": "^4.0.0",
+    "bedrock-angular-alert": "file:..",
     "bedrock-angular-material": "^1.0.0",
     "bedrock-docs": "^2.1.1",
     "bedrock-express": "^2.0.6",
     "bedrock-server": "^2.3.0",
-    "bedrock-test": "digitalbazaar/bedrock-test#2.x",
+    "bedrock-test": "^2.0.0",
     "bedrock-validation": "^2.2.1",
     "bedrock-views": "^5.2.1",
     "bedrock-webpack": "^1.1.1"

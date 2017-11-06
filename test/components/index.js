@@ -5,14 +5,16 @@ import angular from 'angular';
 import * as bedrock from 'bedrock-angular';
 import TestHarnessComponent from './test-harness-component.js';
 
-const module = angular.module('bedrock.alert-test', ['bedrock.alert']);
+const module = angular.module('bedrock.alert-test', [
+  'bedrock.alert', 'ngMaterial'
+]);
 
 bedrock.setRootModule(module);
 
 module.component('brTestHarness', TestHarnessComponent);
 
 /* @ngInject */
-module.config(function($routeProvider) {
+module.config($routeProvider => {
   $routeProvider
     .when('/', {
       title: 'Test Harness',
