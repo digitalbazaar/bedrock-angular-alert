@@ -4,7 +4,7 @@
 
 ### Changed
 - Updated to ES6 syntax.
-- Switch to material design.
+- **BREAKING**: Switch to material design.
 
 ## 3.0.2 - 2017-06-01
 
