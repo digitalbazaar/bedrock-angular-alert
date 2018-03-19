@@ -1,5 +1,7 @@
 # bedrock-angular-alert ChangeLog
 
+## 4.0.0 - 2018-03-19
+
 ## Changed
 - Updated to ES6 syntax.
 - Switch to material design.
