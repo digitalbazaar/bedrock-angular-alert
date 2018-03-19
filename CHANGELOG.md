@@ -2,18 +2,18 @@
 
 ## 4.0.0 - 2018-03-19
 
-## Changed
+### Changed
 - Updated to ES6 syntax.
 - Switch to material design.
 
 ## 3.0.2 - 2017-06-01
 
-## Fixed
+### Fixed
 - Replace jquery features with native alternatives.
 
 ## 3.0.1 - 2017-05-30
 
-## Fixed
+### Fixed
 - Add `bootstrap` dependency.
 
 ## 3.0.0 - 2017-05-26
