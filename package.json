@@ -1,6 +1,6 @@
 {
   "name": "bedrock-angular-alert",
-  "version": "4.0.0",
+  "version": "4.0.1-0",
   "description": "An AngularJS module that provides a service for managing alerts.",
   "browser": "index.js",
   "less": "main.less",
